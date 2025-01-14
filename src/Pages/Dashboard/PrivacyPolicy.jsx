@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
   const { data: privacy, refetch } = usePrivacyPolicyQuery()
   const [createPrivacy] = useCreatePrivacyMutation()
   const [updatePricyPolicy] = useUpdatePricyPolicyMutation()
-  // console.log(terms?.data[0]);  
+
   const privacyContents = privacy?.data
   const [content, setContent] = useState("");
 

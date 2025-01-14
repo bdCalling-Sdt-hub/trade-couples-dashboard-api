@@ -20,7 +20,7 @@ const CreateBlog = ({ itemForEdit , setItemForEdit , openAddModel ,setOpenAddMod
 
 
   const onFinish = async (values) => {
-    // console.log(values); 
+  
     const formData = new FormData();
     if (imgFile) {
       formData.append("image", imgFile);
@@ -36,7 +36,6 @@ const CreateBlog = ({ itemForEdit , setItemForEdit , openAddModel ,setOpenAddMod
     if (itemForEdit?.id) {
       await updateBlog({ id: itemForEdit?.id, value: formData }).then(
         (res) => {
-          console.log(res);  
           if (res?.data?.success) {
             Swal.fire({
               title: "Slider Updated!",
@@ -63,7 +62,7 @@ const CreateBlog = ({ itemForEdit , setItemForEdit , openAddModel ,setOpenAddMod
       );
     } else {
       await addBlog(formData).then((res) => {
-        console.log(res);  
+       
         if (res?.data?.success) {
           Swal.fire({
             title: "Slider Added!",

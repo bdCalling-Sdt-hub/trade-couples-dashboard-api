@@ -7,15 +7,17 @@ import FaqModal from '../../components/ui/FAQ/FaqModal';
 import Title from '../../components/common/Title';
 import { useDeleteFaqMutation, useGetFaqQuery } from '../../redux/apiSlices/faqSlice';
 import Swal from 'sweetalert2';
+import { ConfigProvider, Pagination } from 'antd';
 
 
 const FAQ = () => {
   const [openAddModel, setOpenAddModel] = useState(false);
-  const [modalData, setModalData] = useState(null);
-  const { data: faqs, refetch } = useGetFaqQuery()
+  const [modalData, setModalData] = useState(null); 
+  const [page, setPage] = useState(1);
+  const { data: faqs, refetch } = useGetFaqQuery(page)
   const [deleteFaq] = useDeleteFaqMutation()
 
-  const faqInfo = faqs?.data?.map((value) => ({
+  const faqInfo = faqs?.data?.faqs?.map((value) => ({
     id: value?._id,
     answer: value?.answer,
     question: value?.question
@@ -109,7 +111,26 @@ const FAQ = () => {
         setModalData={setModalData} 
         refetch={refetch}
 
-      />
+      /> 
+
+      <div> 
+      <ConfigProvider
+  theme={{
+    components: {
+      Pagination: {
+        itemActiveBg: "#00809E"
+      },
+    }, 
+    token: {
+      borderRadius:100 ,
+      colorText:"#fffff"
+
+    },
+  }}
+>
+        <Pagination defaultCurrent={1} total={faqs?.data?.meta?.total}  current={ parseInt(page)}  onChange= {(page)=> setPage(page)} />
+</ConfigProvider>
+      </div>
     </div>
   );
 };

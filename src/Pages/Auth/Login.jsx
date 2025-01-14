@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [login , {isSuccess , isError , data , error , isLoading }] = useLoginMutation()    
-  console.log(data); 
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,9 +41,7 @@ const Login = () => {
 
 
   const onFinish = async(values) => {
-    await login(values).then((res)=>{ 
-      console.log(res); 
-    })
+    await login(values)
   };
 
   return (

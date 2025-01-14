@@ -9,10 +9,10 @@ const Subscribers = () => {
     const [page, setPage] = useState(1);
     const itemsPerPage = 10;  
     const [open , setOpen] = useState(false)
-    const {data:getSubscribers , refetch} = useGetAllSubscribersQuery()   
+    const {data:getSubscribers , refetch} = useGetAllSubscribersQuery({search , page })   
     const [userId , setUserId] = useState()
-    console.log(getSubscribers); 
-    const data = getSubscribers?.data?.map((value, index) => ({
+   
+    const data = getSubscribers?.data?.subscriber?.map((value, index) => ({
         key: index + 1,
         name: value?.name,
         email: value?.email,
@@ -96,7 +96,8 @@ const Subscribers = () => {
                     dataSource={data} 
                     pagination={{
                         current: parseInt(page),
-                        onChange: (page)=> setPage(page)
+                        onChange: (page)=> setPage(page), 
+                        total: getSubscribers?.data?.meta?.total
                     }}
                 />
             </ConfigProvider> 

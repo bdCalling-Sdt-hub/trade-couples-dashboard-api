@@ -27,12 +27,12 @@ import CookiePolicy from "../Pages/Dashboard/CookiePolicy";
 import Subscribers from "../Pages/Dashboard/Subscribers";
 import Reports from "../Pages/Dashboard/Reports";
 import Transactions from "../Pages/Dashboard/Transactions";
+import PrivateRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        // element: <ProtectedRoute><Main /></ProtectedRoute> , 
-        element: <Main />,
+        element: <PrivateRoute><Main /></PrivateRoute> ,  
         children: [
             {
                 path: "/",

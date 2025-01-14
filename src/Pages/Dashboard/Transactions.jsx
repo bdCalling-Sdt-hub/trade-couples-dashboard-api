@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Title from '../../components/common/Title';
 import { ConfigProvider, Input, Table } from 'antd'; 
 import { IoEyeOutline } from "react-icons/io5";
+import { useGetSubscriptionQuery } from '../../redux/apiSlices/subscriptionSlice';
  
 const data =[
     {
@@ -45,7 +46,8 @@ const Transactions = () => {
     const [search, setSearch] = useState("") 
         const [page, setPage] = useState(1);
         const itemsPerPage = 10;  
-        const [open , setOpen] = useState(false)
+        const [open , setOpen] = useState(false) 
+        const {data:subscriptions} = useGetSubscriptionQuery(); 
 
     
         const columns = [
@@ -90,7 +92,7 @@ const Transactions = () => {
     return (
         <div>
         <div className='flex items-center justify-between mb-4'>
-             <Title >Transactions</Title>
+             <Title >Subscription</Title>
              <Input
                  style={{
                      width: 300, 

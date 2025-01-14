@@ -13,7 +13,7 @@ const UserProfile = () => {
     const [imgURL, setImgURL] = useState(image);  
     const {data:userProfile , refetch} = useProfileQuery()  
     const [updateProfile , {isLoading , isSuccess , isError , error , data}] = useUpdateProfileMutation()
-    console.log(userProfile?.data); 
+
 
     useEffect(() => {
         if (userProfile?.data) {
@@ -62,9 +62,7 @@ const UserProfile = () => {
        
        formData.append("data",JSON.stringify(data)) 
   
-        await updateProfile(formData).then((res) => {
-            console.log(res);
-        })
+        await updateProfile(formData)
     }; 
 
 

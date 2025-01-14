@@ -21,7 +21,6 @@ const faqSlice = api.injectEndpoints({
 
         updateFaq:builder.mutation({
           query:(data)=>{  
-            //console.log("faq data",data);
             return{
               url:`/faq/${data?.id}` ,
               method:"PATCH" ,

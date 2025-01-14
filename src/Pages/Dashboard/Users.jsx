@@ -9,12 +9,10 @@ import Swal from 'sweetalert2';
 const Users = () => {
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1);
-    const itemsPerPage = 10;
-    const { data: users, refetch } = useGetAllUsersQuery(undefined)
+    const { data: users, refetch } = useGetAllUsersQuery({ search , page })
     const [blockUser] = useBlockUserMutation()
-    console.log(users);
 
-    const data = users?.data?.map((user, index) => ({
+    const data = users?.data?.users?.map((user, index) => ({
         key: index + 1,
         id: user?._id,
         name: user?.name,
@@ -26,7 +24,6 @@ const Users = () => {
     }))
 
     const handleUserBlock = async (id) => {
-        console.log(id);
         await blockUser(id).then((res) => {
             if (res?.data?.success) {
                 Swal.fire({
@@ -54,7 +51,7 @@ const Users = () => {
                 title: "Serial No.",
                 dataIndex: "name",
                 key: "name",
-                render: (_, record, index) => <p>{((page - 1) * itemsPerPage) + index + 1}</p>
+                render: (_, record, index) => <p>{((page - 1) * 10) + index + 1}</p>
             },
             {
                 title: "User",
@@ -133,7 +130,8 @@ const Users = () => {
                         dataSource={data}
                         pagination={{
                             current: parseInt(page),
-                            onChange: (page) => setPage(page)
+                            onChange: (page) => setPage(page) ,
+                            total: users?.data?.meta?.total,
                         }}
                     />
                 </ConfigProvider>

@@ -4,10 +4,15 @@ const usersSlice = api.injectEndpoints({
     endpoints: (builder) => ({ 
 
         getAllUsers: builder.query({
-            query: () => ({
-                url: "/user/all-user",
-                method: "GET",
-            }),
+            query: ({search , page}) => { 
+                const params= new URLSearchParams() 
+                if(page)params.append("page" ,page)
+                if(search)params.append("search" ,search)
+                return{
+                    url:`/user/all-user?${params.toString()}` 
+                } 
+         
+            },
         }), 
 
 

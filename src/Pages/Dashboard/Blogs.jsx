@@ -22,9 +22,8 @@ const Blogs = () => {
   const perPageSize = 10
   const { data: blogs, refetch } = useGetAllBlogsQuery()
   const [deleteBlog] = useDeleteBlogMutation()
-  console.log(blogs);
 
-  const data = blogs?.data?.map((value, index) => ({
+  const data = blogs?.data?.blogs?.map((value, index) => ({
     key: index + 1, 
     id: value?._id ,
     name: value?.title,

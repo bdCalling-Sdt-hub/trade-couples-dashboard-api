@@ -4,7 +4,8 @@ import { useProfileQuery } from '../redux/apiSlices/authSlice';
 
 const PrivateRoute = ({ children }) => {
     const location = useLocation();
-    const {data: profile, isLoading , isError, isFetching} = useProfileQuery(); 
+    const {data, isLoading , isError, isFetching} = useProfileQuery();  
+    const profile = data?.data
 
     if (isLoading || isFetching) {
         return <div>Loading...</div>;

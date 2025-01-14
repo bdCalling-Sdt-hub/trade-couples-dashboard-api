@@ -10,7 +10,7 @@ const Admin = () => {
  const [open , setOpen] = useState(false) 
  const {data:getAdmins  , refetch} = useGetAdminQuery()  
  const [deleteAdmin] = useDeleteAdminMutation()
- console.log(getAdmins); 
+
 
  const data = getAdmins?.data?.map((value, index) => ({
     key: index + 1,

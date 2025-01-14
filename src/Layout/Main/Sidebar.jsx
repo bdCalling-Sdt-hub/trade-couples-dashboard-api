@@ -1,9 +1,8 @@
 import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { MdOutlineAdminPanelSettings, MdOutlineSubscriptions } from 'react-icons/md';
-import { AiOutlineDashboard, AiOutlineTransaction } from 'react-icons/ai';
+import {  MdOutlineSubscriptions } from 'react-icons/md';
+import {  AiOutlineTransaction } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HiUserGroup } from "react-icons/hi2";
 import {  TbUserScreen } from "react-icons/tb";
 import { IoIosLogOut } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -23,7 +22,7 @@ const Sidebar = () => {
 
 
     const handleLogout=()=>{
-        localStorage.removeItem("token")
+        localStorage.removeItem("tradeToken")
         navigate("/auth/login")
     }
 
@@ -65,13 +64,8 @@ const Sidebar = () => {
         }, 
         {
             key: "/transactions",
-            icon: <AiOutlineTransaction size={24} />,
-            label: <Link to="/transactions" >Transactions</Link>
-        }, 
-        {
-            key: "/subscription",
             icon: <MdOutlineSubscriptions size={24} />,
-            label: <Link to="/subscription">Subscription</Link>
+            label: <Link to="/transactions" >Subscription</Link>
         }, 
         {
             key: "subMenuSetting",

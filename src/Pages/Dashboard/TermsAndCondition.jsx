@@ -11,7 +11,6 @@ const TermsAndCondition = () => {
   const { data: terms, refetch } = useTermsQuery()
   const [createTerms] = useCreateTermsMutation()
   const [updateTerms] = useUpdateTermsMutation()
-  // console.log(terms?.data[0]);  
   const termsContents = terms?.data
   const [content, setContent] = useState("");
 
